@@ -1,15 +1,15 @@
-﻿using Autofac;
-using Autofac.Integration.Wcf;
-using Adoption.Contract;
+﻿using Adoption.Contract;
 using Adoption.Core.Interface;
 using Adoption.Persistence;
 using Adoption.Persistence.Repository;
+using Autofac;
+using Autofac.Integration.Wcf;
 using System;
 using System.Web;
 
-namespace Adoption
+namespace MoviesService
 {
-    public class Global : HttpApplication
+	public class Global : HttpApplication
     {
 
         protected void Application_Start(object sender, EventArgs e)
@@ -21,9 +21,11 @@ namespace Adoption
         private void InitializeAutofac()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<AdoptionsServices>();
-            builder.RegisterType<AdoptionContext>();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+			builder.RegisterType<AdoptionContext>();
+			builder.RegisterType<AddressServices>();
+			builder.RegisterType<AdoptionsServices>();
+			builder.RegisterType<WorkerTypeServices>();
             AutofacHostFactory.Container = builder.Build();
         }
 

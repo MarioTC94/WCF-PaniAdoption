@@ -9,6 +9,7 @@ namespace Adoption.Core.Models
 		public Province()
 		{
 			this.Counties = new Collection<County>();
+			this.Addresses = new Collection<Address>();
 		}
 
 		public int Id { get; set; }
@@ -18,5 +19,7 @@ namespace Adoption.Core.Models
 		public string Name { get; set; }
 
 		public ICollection<County> Counties { get; set; }
+
+		public ICollection<Address> Addresses { get; set; }
 	}
 }
