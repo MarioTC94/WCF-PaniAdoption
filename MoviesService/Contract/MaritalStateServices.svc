@@ -1,0 +1,6 @@
+﻿<%@ ServiceHost 
+	Language="C#" 
+	Debug="true" 
+	Service="Adoption.Contract.MaritalStateServices, Adoption" 
+	CodeBehind="MaritalStateServices.svc.cs" 
+	Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf"%>

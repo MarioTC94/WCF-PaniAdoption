@@ -7,13 +7,13 @@ namespace MoviesService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InsertsWorkerType : IMigrationMetadata
+    public sealed partial class AhoraSiPendejadaMario : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InsertsWorkerType));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AhoraSiPendejadaMario));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808081619141_InsertsWorkerType"; }
+            get { return "201808100813526_AhoraSiPendejadaMario"; }
         }
         
         string IMigrationMetadata.Source

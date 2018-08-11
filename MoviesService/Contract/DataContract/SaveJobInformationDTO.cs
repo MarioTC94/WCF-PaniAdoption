@@ -7,11 +7,8 @@ using System.Web;
 namespace Adoption.Contract.DataContract
 {
 	[DataContract]
-	public class JobInformationDTO
+	public class SaveJobInformationDTO
 	{
-		[DataMember]
-		public int Id { get; set; }
-
 		[DataMember]
 		public string CompanyName { get; set; }
 
@@ -29,6 +26,7 @@ namespace Adoption.Contract.DataContract
 
 		[DataMember]
 
-		public KeyValuePairDTO WorkerType { get; set; }
+		public int WorkerTypeId { get; set; }
+
 	}
 }

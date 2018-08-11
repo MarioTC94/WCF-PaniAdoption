@@ -7,12 +7,11 @@ using System.Web;
 namespace Adoption.Contract.DataContract
 {
 	[DataContract]
-	public class AdoptionRequestDTO
+	public class SaveAdoptionRequestDTO
 	{
-		public int Id { get; set; }
 
 		[DataMember]
-		public MarriageInformationDTO MarriageInformation { get; set; }
+		public SaveMarriageInformationDTO MarriageInformation { get; set; }
 
 		[DataMember]
 		public string ProcessDescripction { get; set; }
@@ -30,7 +29,6 @@ namespace Adoption.Contract.DataContract
 		public string IDKid { get; set; }
 
 		[DataMember]
-		public KeyValuePairDTO StateFile { get; set; }
-
+		public int StateFileId { get; set; }
 	}
 }

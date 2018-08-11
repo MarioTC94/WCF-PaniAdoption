@@ -1,9 +1,10 @@
-﻿using Adoption.Contract;
-using Adoption.Contract.DataContract;
+﻿using Adoption.Contract.DataContract;
 using Adoption.Core.Interface;
 using Adoption.Core.Models;
-using System;
+using AutoMapper;
 using System.Collections.Generic;
+using System.Net;
+using System.ServiceModel.Web;
 
 namespace Adoption.Contract
 {
@@ -16,84 +17,64 @@ namespace Adoption.Contract
 			this.uow = uow;
 		}
 
-		public AdoptionProcess AddAdoptionProcess(AdoptionRequestDTO adoptionRequest)
+		public AdoptionRequestDTO AddAdoptionProcess(SaveAdoptionRequestDTO adoptionRequest)
 		{
-			var adoption = AutoMapper.Mapper.Map<AdoptionProcess>(adoptionRequest);
-			return adoption;
+			var adoption = Mapper.Map<SaveAdoptionRequestDTO, AdoptionProcess>(adoptionRequest);
+			this.uow.AdoptionProcess.Add(adoption);
+			this.uow.SaveChanges();
 
+			adoption = uow.AdoptionProcess.GetAdoptionWithRelatives(adoption.Id);
+			return Mapper.Map<AdoptionRequestDTO>(adoption);
 		}
 
-		public void RemoveAdoptionProcess(int id)
+		public AdoptionRequestDTO GetadoptionProcess(int id)
 		{
-			throw new System.NotImplementedException();
+			var adoption = uow.AdoptionProcess.GetAdoptionWithRelatives(id);
+
+			if (adoption is null)
+				throw new WebFaultException(HttpStatusCode.NotFound);
+
+			return Mapper.Map<AdoptionRequestDTO>(adoption);
 		}
 
-		public AdoptionProcess TryMapping()
+		public ICollection<AdoptionRequestDTO> GetAdoptionProcess()
 		{
-			var adoption = new AdoptionRequestDTO
-			{
-				AllDocuments = true,
-				FamilyVisit = true,
-				IDKid = "4536363",
-				ParentsInterview = true,
-				ProcessDescripction = "hola",
-				StateFileId = 1,
-				MarriageInformation = new MarriageInformationDTO
-				{
-
-					MaritalStateId = 1,
-					RoomHouseId = 1,
-					MarriageDate = DateTime.Now,
-					Father = new PersonDTO
-					{
-
-						Name = "Pedro",
-						LastName = "Torres",
-						SecondLastName = "Castillo",
-						BirthDay = DateTime.Now,
-						Email = "fdkgdkg@hotmail.com",
-						Id = "3435363",
-						Phone = "4353503",
-						PersonTypeId = 1,
-						JobInformation = new JobInformationDTO
-						{
-							ActualPosition = "holi",
-							Phone = "535352",
-							AddressCompany = "china",
-							AnualSalary = 100,
-							CompanyName = "xbox",
-							WorkerTypeId = 1
-						}
-					},
-					Mother = new PersonDTO
-					{
-
-						Name = "Juanita",
-						LastName = "Torres",
-						SecondLastName = "Castillo",
-						BirthDay = DateTime.Now,
-						Email = "fdkgdkg@hotmail.com",
-						Id = "34353632",
-						Phone = "43535030",
-						PersonTypeId = 2,
-						JobInformation = new JobInformationDTO
-						{
-							ActualPosition = "holiwis",
-							Phone = "535353535",
-							AddressCompany = "china",
-							AnualSalary = 100,
-							CompanyName = "xbox",
-							WorkerTypeId = 1
-						}
-					}
-				}
-			};
-			return AutoMapper.Mapper.Map<AdoptionProcess>(adoption);
+			var result = uow.AdoptionProcess.GetAdoptionWithRelatives();
+			return Mapper.Map<ICollection<AdoptionRequestDTO>>(result);
 		}
 
-		public void UptadeAdoptionProcess(int id, AdoptionRequestDTO adoptionRequest)
+		public int RemoveAdoptionProcess(int id)
 		{
-			throw new System.NotImplementedException();
+			var adoptionProcess = this.uow.AdoptionProcess.Get(ap => ap.Id == id);
+
+			if (adoptionProcess is null)
+				throw new WebFaultException(HttpStatusCode.NotFound);
+
+			uow.JobInformation.RemoveRange(adoptionProcess.MarriageInformation.Mother.JobInformation);
+			uow.JobInformation.RemoveRange(adoptionProcess.MarriageInformation.Father.JobInformation);
+			uow.Person.Remove(adoptionProcess.MarriageInformation.Mother);
+			uow.Person.Remove(adoptionProcess.MarriageInformation.Father);
+			uow.MarriageInformation.Remove(adoptionProcess.MarriageInformation);
+			uow.AdoptionProcess.Remove(adoptionProcess);
+
+			uow.SaveChanges();
+			List<AdoptionProcess> list = new List<AdoptionProcess>();
+
+			return id;
+		}
+
+		public AdoptionRequestDTO UpdateAdoptionProcess(int id, SaveAdoptionRequestDTO adoptionRequest)
+		{
+			var adoption = uow.AdoptionProcess.Get(ap => ap.Id == id);
+
+			if(adoption is null)
+				throw new WebFaultException(HttpStatusCode.NotFound);
+
+			Mapper.Map<SaveAdoptionRequestDTO, AdoptionProcess>(adoptionRequest, adoption);
+			uow.SaveChanges();
+
+			adoption = uow.AdoptionProcess.GetAdoptionWithRelatives(adoption.Id);
+			return Mapper.Map<AdoptionProcess, AdoptionRequestDTO>(adoption);
 		}
 	}
 }

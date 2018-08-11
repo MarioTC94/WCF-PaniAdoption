@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 using Adoption.Contract.DataContract;
 using Adoption.Core.Interface;
 using AutoMapper;
@@ -20,14 +21,11 @@ namespace Adoption.Contract
 		{
 			this.uow = uow;
 		}
+
 		public IEnumerable<ProvinceDTO> GetProvince()
 		{
-			var provinces = this.uow.Province.GetProvinceWithRelatives();
-			var Map = Mapper.Map<IEnumerable<ProvinceDTO>>(provinces);
-
-			return Map;
+			var provinces = uow.Province.GetProvinceWithRelatives();
+			return Mapper.Map<IEnumerable<ProvinceDTO>>(provinces);
 		}
-
-
 	}
 }

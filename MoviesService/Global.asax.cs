@@ -26,6 +26,9 @@ namespace MoviesService
 			builder.RegisterType<AddressServices>();
 			builder.RegisterType<AdoptionsServices>();
 			builder.RegisterType<WorkerTypeServices>();
+			builder.RegisterType<RoomHouseServices>();
+			builder.RegisterType<MaritalStateServices>();
+			builder.RegisterType<StateFileServices>();
             AutofacHostFactory.Container = builder.Build();
         }
 

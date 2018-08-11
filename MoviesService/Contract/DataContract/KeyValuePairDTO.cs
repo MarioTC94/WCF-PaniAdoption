@@ -13,6 +13,6 @@ namespace Adoption.Contract.DataContract
 		public int Id { get; set; }
 
 		[DataMember]
-		public string Name { get; set; }
+		public string Description { get; set; }
 	}
 }

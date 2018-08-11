@@ -7,7 +7,7 @@ using System.Web;
 namespace Adoption.Contract.DataContract
 {
 	[DataContract]
-	public class ContactInformationDTO : PersonDTO
+	public class ContactInformationDTO : SavePersonDTO
 	{
 		[DataMember]
 		public int ProvinceId { get; set; }

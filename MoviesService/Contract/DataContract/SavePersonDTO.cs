@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
@@ -8,12 +7,8 @@ using System.Web;
 namespace Adoption.Contract.DataContract
 {
 	[DataContract]
-	public class PersonDTO
+	public class SavePersonDTO
 	{
-		public PersonDTO()
-		{
-			this.JobInformation = new Collection<JobInformationDTO>();
-		}
 
 		[DataMember]
 		public string Id { get; set; }
@@ -37,9 +32,10 @@ namespace Adoption.Contract.DataContract
 		public string Phone { get; set; }
 
 		[DataMember]
-		public KeyValuePairDTO PersonType { get; set; }
+		public int PersonTypeId { get; set; }
 
 		[DataMember]
-		public ICollection<JobInformationDTO> JobInformation { get; set; }
+		public SaveJobInformationDTO JobInformation { get; set; }
+
 	}
 }

@@ -23,7 +23,7 @@ namespace Adoption.Persistence
 		public DbSet<StateFile> StateFiles { get; set; }
 		public DbSet<AdoptionProcess> AdoptionProcesses { get; set; }
 
-		public AdoptionContext() : base("DefaultConnectionString") { }
+		public AdoptionContext() : base("AzureConnectionString") { }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
@@ -76,7 +76,6 @@ namespace Adoption.Persistence
 				.WithMany(x => x.Mothers)
 				.HasForeignKey(mi => mi.MotherId)
 				.WillCascadeOnDelete(false);
-			// Ya quedó listo, revice la base y borre este comentario :v
 		}
 
 	}

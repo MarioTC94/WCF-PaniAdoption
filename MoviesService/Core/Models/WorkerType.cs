@@ -16,7 +16,7 @@ namespace Adoption.Core.Models
 
 		[Required]
 		[StringLength(30)]
-		public string DescriptionWorkerType { get; set; }
+		public string Description { get; set; }
 
 		public ICollection<JobInformation> Jobs { get; set; }
 	}

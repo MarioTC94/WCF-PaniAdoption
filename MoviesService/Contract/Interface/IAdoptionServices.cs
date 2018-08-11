@@ -14,15 +14,17 @@ namespace Adoption.Contract
     public interface IAdoptionServices
     {
 		[OperationContract]
-		AdoptionProcess AddAdoptionProcess(AdoptionRequestDTO adoptionRequest);
+		AdoptionRequestDTO AddAdoptionProcess(SaveAdoptionRequestDTO adoptionRequest);
 
 		[OperationContract]
-		void RemoveAdoptionProcess(int id);
+		int RemoveAdoptionProcess(int id);
 
 		[OperationContract]
-		void UptadeAdoptionProcess(int id, AdoptionRequestDTO adoptionRequest);
+		AdoptionRequestDTO UpdateAdoptionProcess(int id, SaveAdoptionRequestDTO adoptionRequest);
 
 		[OperationContract]
-		AdoptionProcess TryMapping();
-    }
+		AdoptionRequestDTO GetadoptionProcess(int id);
+		[OperationContract]
+		ICollection<AdoptionRequestDTO> GetAdoptionProcess();
+	}
 }

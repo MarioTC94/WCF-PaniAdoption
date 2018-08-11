@@ -7,13 +7,13 @@ namespace MoviesService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddInfoStateFile : IMigrationMetadata
+    public sealed partial class InsertsFileState : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddInfoStateFile));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InsertsFileState));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808040004466_AddInfoStateFile"; }
+            get { return "201808110058179_InsertsFileState"; }
         }
         
         string IMigrationMetadata.Source

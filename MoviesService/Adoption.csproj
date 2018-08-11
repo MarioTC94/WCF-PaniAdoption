@@ -83,28 +83,49 @@
   <ItemGroup>
     <Content Include="Contract\AddressServices.svc" />
     <Content Include="Contract\AdoptionsServices.svc" />
+    <Content Include="Contract\MaritalStateServices.svc" />
+    <Content Include="Contract\RoomHouseServices.svc" />
+    <Content Include="Contract\StateFileServices.svc" />
     <Content Include="Contract\WorkerTypeServices.svc" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contract\AddressServices.svc.cs">
       <DependentUpon>AddressServices.svc</DependentUpon>
     </Compile>
     <Compile Include="Contract\DataContract\AdoptionRequestDTO.cs" />
+    <Compile Include="Contract\DataContract\JobInformationDTO.cs" />
+    <Compile Include="Contract\DataContract\MarriageInformationDTO.cs" />
+    <Compile Include="Contract\DataContract\PersonDTO.cs" />
+    <Compile Include="Contract\DataContract\SaveAdoptionRequestDTO.cs" />
     <Compile Include="Contract\DataContract\ContactInformationDTO.cs" />
     <Compile Include="Contract\DataContract\CountyDTO.cs" />
-    <Compile Include="Contract\DataContract\JobInformationDTO.cs" />
+    <Compile Include="Contract\DataContract\SaveJobInformationDTO.cs" />
     <Compile Include="Contract\DataContract\KeyValuePairDTO.cs" />
-    <Compile Include="Contract\DataContract\MarriageInformationDTO.cs" />
+    <Compile Include="Contract\DataContract\SaveMarriageInformationDTO.cs" />
     <Compile Include="Contract\DataContract\ProvinceDTO.cs" />
-    <Compile Include="Contract\DataContract\PersonDTO.cs" />
+    <Compile Include="Contract\DataContract\SavePersonDTO.cs" />
+    <Compile Include="Contract\Interface\IMaritalStateServices.cs" />
     <Compile Include="Contract\Interface\IAddressServices.cs" />
     <Compile Include="Contract\Interface\IAdoptionServices.cs" />
     <Compile Include="Contract\AdoptionsServices.svc.cs">
       <DependentUpon>AdoptionsServices.svc</DependentUpon>
     </Compile>
     <Compile Include="Contract\Interface\IWorkerTypeServices.cs" />
+    <Compile Include="Contract\Interface\IRoomHouseServices.cs" />
+    <Compile Include="Contract\Interface\IStateFileServices.cs" />
+    <Compile Include="Contract\MaritalStateServices.svc.cs">
+      <DependentUpon>MaritalStateServices.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\RoomHouseServices.svc.cs">
+      <DependentUpon>RoomHouseServices.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\StateFileServices.svc.cs">
+      <DependentUpon>StateFileServices.svc</DependentUpon>
+    </Compile>
     <Compile Include="Contract\WorkerTypeServices.svc.cs">
       <DependentUpon>WorkerTypeServices.svc</DependentUpon>
     </Compile>
@@ -172,33 +193,29 @@
     <Compile Include="Migrations\201808022116554_MigrationTableAddress.Designer.cs">
       <DependentUpon>201808022116554_MigrationTableAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808030005546_PendejadaMario.cs" />
-    <Compile Include="Migrations\201808030005546_PendejadaMario.Designer.cs">
-      <DependentUpon>201808030005546_PendejadaMario.cs</DependentUpon>
+    <Compile Include="Migrations\201808100813526_AhoraSiPendejadaMario.cs" />
+    <Compile Include="Migrations\201808100813526_AhoraSiPendejadaMario.Designer.cs">
+      <DependentUpon>201808100813526_AhoraSiPendejadaMario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808030514022_AddMariageTables.cs" />
-    <Compile Include="Migrations\201808030514022_AddMariageTables.Designer.cs">
-      <DependentUpon>201808030514022_AddMariageTables.cs</DependentUpon>
+    <Compile Include="Migrations\201808102350353_InsertsRoomHouse.cs" />
+    <Compile Include="Migrations\201808102350353_InsertsRoomHouse.Designer.cs">
+      <DependentUpon>201808102350353_InsertsRoomHouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808032358431_AddProcessesTables.cs" />
-    <Compile Include="Migrations\201808032358431_AddProcessesTables.Designer.cs">
-      <DependentUpon>201808032358431_AddProcessesTables.cs</DependentUpon>
+    <Compile Include="Migrations\201808110046569_InsertWorkerType.cs" />
+    <Compile Include="Migrations\201808110046569_InsertWorkerType.Designer.cs">
+      <DependentUpon>201808110046569_InsertWorkerType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808040004466_AddInfoStateFile.cs" />
-    <Compile Include="Migrations\201808040004466_AddInfoStateFile.Designer.cs">
-      <DependentUpon>201808040004466_AddInfoStateFile.cs</DependentUpon>
+    <Compile Include="Migrations\201808110058179_InsertsFileState.cs" />
+    <Compile Include="Migrations\201808110058179_InsertsFileState.Designer.cs">
+      <DependentUpon>201808110058179_InsertsFileState.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808081619141_InsertsWorkerType.cs" />
-    <Compile Include="Migrations\201808081619141_InsertsWorkerType.Designer.cs">
-      <DependentUpon>201808081619141_InsertsWorkerType.cs</DependentUpon>
+    <Compile Include="Migrations\201808110108341_InsertsPersonTypes.cs" />
+    <Compile Include="Migrations\201808110108341_InsertsPersonTypes.Designer.cs">
+      <DependentUpon>201808110108341_InsertsPersonTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808081720189_InsertsMaritalStates.cs" />
-    <Compile Include="Migrations\201808081720189_InsertsMaritalStates.Designer.cs">
-      <DependentUpon>201808081720189_InsertsMaritalStates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808081726057_InsertsRoomHouse.cs" />
-    <Compile Include="Migrations\201808081726057_InsertsRoomHouse.Designer.cs">
-      <DependentUpon>201808081726057_InsertsRoomHouse.cs</DependentUpon>
+    <Compile Include="Migrations\201808110115237_InsertsMaritalStates.cs" />
+    <Compile Include="Migrations\201808110115237_InsertsMaritalStates.Designer.cs">
+      <DependentUpon>201808110115237_InsertsMaritalStates.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\AdoptionContext.cs" />
@@ -224,6 +241,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\AdoptionService - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\AdoptionService - Web Deploy1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -256,26 +275,23 @@
     <EmbeddedResource Include="Migrations\201808022116554_MigrationTableAddress.resx">
       <DependentUpon>201808022116554_MigrationTableAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808030005546_PendejadaMario.resx">
-      <DependentUpon>201808030005546_PendejadaMario.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808100813526_AhoraSiPendejadaMario.resx">
+      <DependentUpon>201808100813526_AhoraSiPendejadaMario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808030514022_AddMariageTables.resx">
-      <DependentUpon>201808030514022_AddMariageTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808102350353_InsertsRoomHouse.resx">
+      <DependentUpon>201808102350353_InsertsRoomHouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808032358431_AddProcessesTables.resx">
-      <DependentUpon>201808032358431_AddProcessesTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808110046569_InsertWorkerType.resx">
+      <DependentUpon>201808110046569_InsertWorkerType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808040004466_AddInfoStateFile.resx">
-      <DependentUpon>201808040004466_AddInfoStateFile.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808110058179_InsertsFileState.resx">
+      <DependentUpon>201808110058179_InsertsFileState.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808081619141_InsertsWorkerType.resx">
-      <DependentUpon>201808081619141_InsertsWorkerType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808110108341_InsertsPersonTypes.resx">
+      <DependentUpon>201808110108341_InsertsPersonTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808081720189_InsertsMaritalStates.resx">
-      <DependentUpon>201808081720189_InsertsMaritalStates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808081726057_InsertsRoomHouse.resx">
-      <DependentUpon>201808081726057_InsertsRoomHouse.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808110115237_InsertsMaritalStates.resx">
+      <DependentUpon>201808110115237_InsertsMaritalStates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace MoviesService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddMariageTables : IMigrationMetadata
+    public sealed partial class InsertsPersonTypes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMariageTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InsertsPersonTypes));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808030514022_AddMariageTables"; }
+            get { return "201808110108341_InsertsPersonTypes"; }
         }
         
         string IMigrationMetadata.Source

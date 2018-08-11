@@ -3,6 +3,7 @@ using Adoption.Core.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Adoption.Persistence.Repository
 {
@@ -20,6 +21,12 @@ namespace Adoption.Persistence.Repository
 		{
 			return context.Provinces
 				.Include(p => p.Counties.Select(c => c.Districts)).ToList();
+		}
+
+		public Task<List<Province>> GetProvinceWithRelativesAsync()
+		{
+			return context.Provinces
+				.Include(p => p.Counties.Select(c => c.Districts)).ToListAsync();
 		}
 	}
 }
