@@ -1,16 +1,18 @@
-namespace MoviesService.Migrations
+namespace Adoption.Migrations
 {
-	using Adoption.Persistence;
-	using System.Data.Entity.Migrations;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
-	internal sealed class Configuration : DbMigrationsConfiguration<AdoptionContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Adoption.Persistence.AdoptionContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(AdoptionContext context)
+        protected override void Seed(Adoption.Persistence.AdoptionContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -25,6 +25,6 @@ namespace Adoption.Contract
 		[OperationContract]
 		AdoptionRequestDTO GetadoptionProcess(int id);
 		[OperationContract]
-		ICollection<AdoptionRequestDTO> GetAdoptionProcess();
+		ICollection<AdoptionRequestDTO> GetAllAdoptionProcess();
 	}
 }

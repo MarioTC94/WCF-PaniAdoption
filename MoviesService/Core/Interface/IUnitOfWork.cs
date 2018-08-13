@@ -21,6 +21,7 @@ namespace Adoption.Core.Interface
 		IMarriageInformationRepository MarriageInformation { get; }
 		IMaritalStateRepository MaritalState { get;  }
 		IAdoptionProcessRepository AdoptionProcess { get; }
+		IUserRepository User { get; }
 		int SaveChanges();
     }
 }

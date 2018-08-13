@@ -9,7 +9,6 @@ namespace Adoption.Core.Models
 
 		public Person()
 		{
-			this.Addresses = new Collection<Address>();
 			this.JobInformation = new Collection<JobInformation>();
 			this.Fathers = new Collection<MarriageInformation>();
 			this.Mothers = new Collection<MarriageInformation>();
@@ -44,8 +43,6 @@ namespace Adoption.Core.Models
 
 		[Required]
 		public int PersonTypeId { get; set; }
-
-		public ICollection<Address> Addresses { get; set; }
 
 		public ICollection<JobInformation> JobInformation { get; set; }
 

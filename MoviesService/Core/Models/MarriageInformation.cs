@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Adoption.Core.Models
 {
@@ -12,6 +10,7 @@ namespace Adoption.Core.Models
 
 		public MarriageInformation()
 		{
+			this.Addresses = new Collection<Address>();	
 			this.AdoptionProcesses = new Collection<AdoptionProcess>();
 		}
 
@@ -41,5 +40,7 @@ namespace Adoption.Core.Models
 		public string FatherId { get; set; }
 
 		public ICollection<AdoptionProcess> AdoptionProcesses { get; set; }
+
+		public ICollection<Address> Addresses { get; set; }
 	}
 }

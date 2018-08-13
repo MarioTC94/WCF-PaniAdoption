@@ -22,7 +22,7 @@ namespace Adoption.Persistence.Repository
 		public IMarriageInformationRepository MarriageInformation { get; private set; }
 		public IMaritalStateRepository MaritalState { get; private set; }
 		public IAdoptionProcessRepository AdoptionProcess { get; private set; }
-
+		public IUserRepository User { get; private set; }
 
 		public UnitOfWork(AdoptionContext context)
         {
@@ -39,8 +39,7 @@ namespace Adoption.Persistence.Repository
 			MarriageInformation = new MarriageInformationRepository(context);
 			MaritalState = new MaritalStateRepository(context);
 			AdoptionProcess = new AdoptionProcessRepository(context);
-
-
+			User = new UserRepository(context);
 
             this.context = context;
         }

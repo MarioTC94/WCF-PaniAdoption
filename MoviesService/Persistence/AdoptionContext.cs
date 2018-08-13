@@ -10,18 +10,21 @@ namespace Adoption.Persistence
 {
     public class AdoptionContext : DbContext
     {
-        public DbSet<Person> People { get; set; }
-        public DbSet<PersonType> PersonTypes { get; set; }
-		public DbSet<Province> Provinces { get; set; }
-		public DbSet<County> Counties { get; set; }
-		public DbSet<District> Districts { get; set; }
-		public DbSet<Address> Addresses { get; set; }
-		public DbSet<WorkerType> WorkerTypes { get; set; }
-		public DbSet<JobInformation> JobInformation { get; set; }
-		public DbSet<RoomHouse> RoomHouses { get; set; }
-		public DbSet<MaritalState> MaritalStates { get; set; }
-		public DbSet<StateFile> StateFiles { get; set; }
-		public DbSet<AdoptionProcess> AdoptionProcesses { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+		public virtual DbSet<PersonType> PersonTypes { get; set; }
+		public virtual DbSet<Province> Provinces { get; set; }
+		public virtual DbSet<County> Counties { get; set; }
+		public virtual DbSet<District> Districts { get; set; }
+		public virtual DbSet<Address> Addresses { get; set; }
+		public virtual DbSet<WorkerType> WorkerTypes { get; set; }
+		public virtual DbSet<JobInformation> JobInformation { get; set; }
+		public virtual DbSet<RoomHouse> RoomHouses { get; set; }
+		public virtual DbSet<MaritalState> MaritalStates { get; set; }
+		public virtual DbSet<StateFile> StateFiles { get; set; }
+		public virtual DbSet<AdoptionProcess> AdoptionProcesses { get; set; }
+		public virtual DbSet<MarriageInformation> MarriageInformation { get; set; }
+
+		public virtual DbSet<User> Users { get; set; }
 
 		public AdoptionContext() : base("AzureConnectionString") { }
 
@@ -45,19 +48,19 @@ namespace Adoption.Persistence
 
 			modelBuilder.Entity<Address>()
 				.HasRequired(a => a.Province)
-				.WithMany()
+				.WithMany(a => a.Addresses)
 				.HasForeignKey(ad => ad.ProvinceId)
 				.WillCascadeOnDelete(false);
 
 			modelBuilder.Entity<Address>()
 				.HasRequired(a => a.County)
-				.WithMany()
+				.WithMany(a => a.Addresses)
 				.HasForeignKey(ad => ad.CountyId)
 				.WillCascadeOnDelete(false);
 
 			modelBuilder.Entity<Address>()
 				.HasRequired(a => a.District)
-				.WithMany()
+				.WithMany(a => a.Addresses)
 				.HasForeignKey(ad => ad.DistrictId)
 				.WillCascadeOnDelete(false);
 
@@ -76,6 +79,9 @@ namespace Adoption.Persistence
 				.WithMany(x => x.Mothers)
 				.HasForeignKey(mi => mi.MotherId)
 				.WillCascadeOnDelete(false);
+
+			modelBuilder.Entity<User>()
+				.HasKey(u => u.Email);
 		}
 
 	}

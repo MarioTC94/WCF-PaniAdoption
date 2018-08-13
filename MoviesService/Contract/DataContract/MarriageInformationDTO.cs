@@ -7,8 +7,10 @@ using System.Web;
 
 namespace Adoption.Contract.DataContract
 {
+	[DataContract]
 	public class MarriageInformationDTO
 	{
+		[DataMember]
 		public int Id { get; set; }
 
 		[DataMember]
@@ -25,5 +27,9 @@ namespace Adoption.Contract.DataContract
 
 		[DataMember]
 		public DateTime MarriageDate { get; set; }
+
+		[DataMember]
+		public AddressDTO Address { get; set; }
+
 	}
 }

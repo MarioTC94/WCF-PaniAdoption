@@ -9,6 +9,7 @@ namespace Adoption.Contract.DataContract
 	[DataContract]
 	public class AdoptionRequestDTO
 	{
+		[DataMember]
 		public int Id { get; set; }
 
 		[DataMember]

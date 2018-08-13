@@ -34,10 +34,14 @@ namespace Adoption.Persistence.Repository
 				.Include(ap => ap.StateFile)
 				.Include(ap => ap.MarriageInformation.RoomHouse)
 				.Include(ap => ap.MarriageInformation.MaritalState)
+				.Include(ap => ap.MarriageInformation.MaritalState.Marriages.Select(x => x.Addresses.Select(d => d.Province)))
+				.Include(ap => ap.MarriageInformation.MaritalState.Marriages.Select(x => x.Addresses.Select(d => d.County)))
+				.Include(ap => ap.MarriageInformation.MaritalState.Marriages.Select(x => x.Addresses.Select(d => d.District)))
 				.Include(ap => ap.MarriageInformation.Father.JobInformation.Select(j => j.WorkerType))
 				.Include(ap => ap.MarriageInformation.Mother.JobInformation.Select(j => j.WorkerType))
 				.Include(ap => ap.MarriageInformation.Father.PersonType)
-				.Include(ap => ap.MarriageInformation.Mother.PersonType);
+				.Include(ap => ap.MarriageInformation.Mother.PersonType)
+		;
 		}
 	}
 }

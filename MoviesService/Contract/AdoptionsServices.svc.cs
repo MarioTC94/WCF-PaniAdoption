@@ -24,7 +24,9 @@ namespace Adoption.Contract
 			this.uow.SaveChanges();
 
 			adoption = uow.AdoptionProcess.GetAdoptionWithRelatives(adoption.Id);
-			return Mapper.Map<AdoptionRequestDTO>(adoption);
+			var result = Mapper.Map<AdoptionRequestDTO>(adoption);
+
+			return result;
 		}
 
 		public AdoptionRequestDTO GetadoptionProcess(int id)
@@ -37,15 +39,16 @@ namespace Adoption.Contract
 			return Mapper.Map<AdoptionRequestDTO>(adoption);
 		}
 
-		public ICollection<AdoptionRequestDTO> GetAdoptionProcess()
+		public ICollection<AdoptionRequestDTO> GetAllAdoptionProcess()
 		{
-			var result = uow.AdoptionProcess.GetAdoptionWithRelatives();
-			return Mapper.Map<ICollection<AdoptionRequestDTO>>(result);
+			var adoptions = uow.AdoptionProcess.GetAdoptionWithRelatives();
+			var result =  Mapper.Map<ICollection<AdoptionRequestDTO>>(adoptions);
+			return result;
 		}
 
 		public int RemoveAdoptionProcess(int id)
 		{
-			var adoptionProcess = this.uow.AdoptionProcess.Get(ap => ap.Id == id);
+			var adoptionProcess = this.uow.AdoptionProcess.GetAdoptionWithRelatives(id);
 
 			if (adoptionProcess is null)
 				throw new WebFaultException(HttpStatusCode.NotFound);
@@ -65,9 +68,10 @@ namespace Adoption.Contract
 
 		public AdoptionRequestDTO UpdateAdoptionProcess(int id, SaveAdoptionRequestDTO adoptionRequest)
 		{
-			var adoption = uow.AdoptionProcess.Get(ap => ap.Id == id);
+			var adoption = uow.AdoptionProcess.GetAdoptionWithRelatives(id);
 
-			if(adoption is null)
+
+			if (adoption is null)
 				throw new WebFaultException(HttpStatusCode.NotFound);
 
 			Mapper.Map<SaveAdoptionRequestDTO, AdoptionProcess>(adoptionRequest, adoption);

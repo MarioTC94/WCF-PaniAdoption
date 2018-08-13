@@ -23,5 +23,8 @@ namespace Adoption.Contract.DataContract
 
 		[DataMember]
 		public DateTime MarriageDate { get; set; }
+
+		[DataMember]
+		public SaveAddressDTO Address { get; set; }
 	}
 }
